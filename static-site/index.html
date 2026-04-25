@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ТВОЯ ПОСЛЕДНЯЯ ПЕСНЯ</title>
+    <meta
+      name="description"
+      content="Если бы тебе осталась всего одна песня — какую ты включишь перед тем, как всё закончится?"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="noise"></div>
+    <header class="topbar">
+      <div class="shell topbar-inner">
+        <div class="brand">TVOYA POSLEDNYAYA PESNYA</div>
+        <a class="ghost-button" href="#board">Рейтинг</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero shell">
+        <div class="hero-copy">
+          <p class="eyebrow">Один вопрос. Один трек. Один финал.</p>
+          <h1>Если бы тебе осталась всего одна песня...</h1>
+          <p class="lead">Какую ты включишь перед тем, как всё закончится?</p>
+        </div>
+
+        <div class="experience-grid">
+          <section class="panel search-panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow muted">Поиск</p>
+                <p class="panel-copy">Найди трек, с которым ты бы оставил этот мир.</p>
+                <p class="integration-note">Реальный поиск идет через Apple Music / iTunes Search API. Если сервис недоступен, включается локальный demo fallback.</p>
+              </div>
+            </div>
+
+            <div class="search-box">
+              <input id="searchInput" type="text" placeholder="Ищи по названию, артисту, памяти, признанию" autocomplete="off" />
+              <div id="searchResults" class="search-results hidden"></div>
+            </div>
+
+            <div id="selectedCard" class="selected-card hidden"></div>
+          </section>
+
+          <aside class="panel side-panel">
+            <p class="eyebrow muted">Живой фид</p>
+            <div id="liveFeed" class="live-feed"></div>
+            <div class="divider"></div>
+            <p class="eyebrow muted">Последние причины</p>
+            <div id="reasons" class="reason-list"></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="marquee-wrap">
+        <div id="marquee" class="marquee"></div>
+      </section>
+
+      <section id="board" class="shell board-section">
+        <div class="board-header">
+          <div>
+            <p class="eyebrow muted">Рейтинг</p>
+            <h2>Песни, которые люди оставляют себе на конец.</h2>
+          </div>
+          <p class="board-copy">
+            Локальная версия открывается без `npm`, но поиск треков теперь идет через внешний музыкальный API. Выборы и цитаты обновляются прямо в браузере.
+          </p>
+        </div>
+
+        <div class="panel table-panel">
+          <div class="table-head">
+            <span>Место</span>
+            <span>Трек</span>
+            <span>Исполнитель</span>
+            <span>Выбрали</span>
+          </div>
+          <div id="boardRows" class="table-rows"></div>
+        </div>
+      </section>
+    </main>
+
+    <div id="shareModal" class="modal hidden">
+      <div class="modal-backdrop"></div>
+      <div class="modal-card panel">
+        <button id="closeModal" class="icon-button" aria-label="Close">×</button>
+        <p class="eyebrow muted">Поделиться</p>
+        <h3>Твоя последняя песня выбрана.</h3>
+        <p id="shareText" class="share-copy"></p>
+        <div class="share-actions">
+          <button class="ghost-button" data-share="copy">Скопировать ссылку</button>
+          <button class="ghost-button" data-share="x">X</button>
+          <button class="ghost-button" data-share="telegram">Telegram</button>
+          <button class="ghost-button" data-share="whatsapp">WhatsApp</button>
+          <button class="ghost-button" data-share="vk">VK</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
