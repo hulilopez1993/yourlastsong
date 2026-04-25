@@ -110,7 +110,7 @@ function normalizeTrack(track) {
 }
 
 function getTimezoneCity() {
-  const zone = Intl.DateTimeFormat().resolvedOptions().timeZone || "Somewhere";
+  const zone = Intl.DateTimeFormat().resolvedOptions().timeZone || "Где-то";
   return zone.split("/").pop().replaceAll("_", " ");
 }
 
@@ -162,7 +162,8 @@ function renderResults() {
 
   if (!matches.length) {
     searchResults.classList.remove("hidden");
-    searchResults.innerHTML = `<div class="result-row"><div></div><div class="song-sub">Ничего не найдено. Попробуй другое название или исполнителя.</div><div></div></div>`;
+    searchResults.innerHTML =
+      '<div class="result-row"><div></div><div class="song-sub">Ничего не найдено. Попробуй другое название или исполнителя.</div><div></div></div>';
     return;
   }
 
@@ -174,7 +175,7 @@ function renderResults() {
           <div class="cover"><img src="${track.cover}" alt="${track.title}"></div>
           <div>
             <div class="song-title">${track.title}</div>
-            <div class="song-sub">${track.artist}${track.source === "itunes" ? " / Apple Music" : " / demo"}</div>
+            <div class="song-sub">${track.artist}${track.source === "itunes" ? " / найдено через Apple Music" : ""}</div>
           </div>
           <div>↗</div>
         </button>
@@ -201,7 +202,11 @@ function renderSelected() {
         <p class="selected-meta">${track.artist}</p>
         <div class="selected-actions">
           <button class="ghost-button" id="playPreview">${track.preview ? "Слушать превью" : "Превью недоступно"}</button>
-          ${track.externalUrl ? `<a class="ghost-button" href="${track.externalUrl}" target="_blank" rel="noreferrer">Открыть в Apple Music</a>` : `<a class="ghost-button" href="#board">К рейтингу</a>`}
+          ${
+            track.externalUrl
+              ? `<a class="ghost-button" href="${track.externalUrl}" target="_blank" rel="noreferrer">Открыть трек</a>`
+              : `<a class="ghost-button" href="#board">К рейтингу</a>`
+          }
         </div>
       </div>
     </div>
@@ -280,7 +285,7 @@ function renderBoard() {
             <div class="cover"><img src="${track.cover}" alt="${track.title}"></div>
             <div class="track-copy">
               <div class="song-title">${track.title}</div>
-              <div class="song-sub">${track.artist}${track.source === "itunes" ? " / Apple Music" : ""}</div>
+              <div class="song-sub">${track.artist}${track.source === "itunes" ? " / найдено через Apple Music" : ""}</div>
             </div>
           </div>
           <div class="artist-cell song-sub">${track.artist}</div>
@@ -307,9 +312,7 @@ function renderReasons() {
 
 function renderMarquee() {
   const items = [...state.reasons, ...state.reasons];
-  marquee.innerHTML = items
-    .map((item) => `<span>"${item.text}" / ${item.track} / ${item.city}</span>`)
-    .join("");
+  marquee.innerHTML = items.map((item) => `<span>"${item.text}" / ${item.track} / ${item.city}</span>`).join("");
 }
 
 function renderLiveFeed() {
@@ -327,7 +330,7 @@ function renderLiveFeed() {
 
 function openShare(track) {
   const origin = window.location.origin;
-  const text = `Я выбрал своей последней песней перед смертью ${track.title} — ${track.artist}. А какая будет у тебя? Выбери на ${origin}`;
+  const text = `Я выбрал своей последней песней ${track.title} — ${track.artist}. А какая будет у тебя? Выбери на ${origin}`;
   shareTextNode.textContent = text;
   shareModal.classList.remove("hidden");
   shareModal.dataset.shareText = text;
@@ -356,7 +359,9 @@ function bindEvents() {
   searchResults.addEventListener("click", (event) => {
     const button = event.target.closest("[data-select]");
     if (!button) return;
-    const track = state.searchResults.find((item) => item.id === button.dataset.select) || state.tracks.find((item) => item.id === button.dataset.select);
+    const track =
+      state.searchResults.find((item) => item.id === button.dataset.select) ||
+      state.tracks.find((item) => item.id === button.dataset.select);
     if (!track) return;
     state.selected = track;
     searchInput.value = `${track.title} - ${track.artist}`;

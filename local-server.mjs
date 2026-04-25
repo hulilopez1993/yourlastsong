@@ -44,6 +44,15 @@ const server = createServer(async (request, response) => {
   }
 });
 
+server.on("error", (error) => {
+  if (error.code === "EADDRINUSE") {
+    console.error(`Port ${port} is already in use. If the site is already open, just use http://localhost:${port}`);
+    process.exit(1);
+  }
+
+  throw error;
+});
+
 server.listen(port, "127.0.0.1", () => {
   console.log(`Local site is running at http://127.0.0.1:${port}`);
 });

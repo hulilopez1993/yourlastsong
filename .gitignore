@@ -1,7 +1,11 @@
 .next
 node_modules
-.env
-.env.local
 dist
 coverage
 npm-debug.log*
+.env
+.env.local
+.next-dev.log
+.next-dev.err.log
+.static-server.log
+.static-server.err.log

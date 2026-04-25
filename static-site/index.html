@@ -20,7 +20,7 @@
     <div class="noise"></div>
     <header class="topbar">
       <div class="shell topbar-inner">
-        <div class="brand">TVOYA POSLEDNYAYA PESNYA</div>
+        <div class="brand">ТВОЯ ПОСЛЕДНЯЯ ПЕСНЯ</div>
         <a class="ghost-button" href="#board">Рейтинг</a>
       </div>
     </header>
@@ -39,12 +39,17 @@
               <div>
                 <p class="eyebrow muted">Поиск</p>
                 <p class="panel-copy">Найди трек, с которым ты бы оставил этот мир.</p>
-                <p class="integration-note">Реальный поиск идет через Apple Music / iTunes Search API. Если сервис недоступен, включается локальный demo fallback.</p>
+                <p class="integration-note">Поиск работает через Apple Music / iTunes Search API.</p>
               </div>
             </div>
 
             <div class="search-box">
-              <input id="searchInput" type="text" placeholder="Ищи по названию, артисту, памяти, признанию" autocomplete="off" />
+              <input
+                id="searchInput"
+                type="text"
+                placeholder="Ищи по названию, артисту, памяти, признанию"
+                autocomplete="off"
+              />
               <div id="searchResults" class="search-results hidden"></div>
             </div>
 
@@ -72,7 +77,7 @@
             <h2>Песни, которые люди оставляют себе на конец.</h2>
           </div>
           <p class="board-copy">
-            Локальная версия открывается без `npm`, но поиск треков теперь идет через внешний музыкальный API. Выборы и цитаты обновляются прямо в браузере.
+            Выборы и цитаты обновляются прямо в браузере, а найденные треки можно сразу открыть или послушать в превью.
           </p>
         </div>
 
